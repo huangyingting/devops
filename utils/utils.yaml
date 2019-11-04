@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: utils
+  namespace: utils
+  labels:
+    name: utils
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: utils
+    spec:
+      restartPolicy: Always
+      containers:
+        - image: "huangyingting/utils:latest"
+          imagePullPolicy: Always         
+          name: "utils"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 64Mi                  
