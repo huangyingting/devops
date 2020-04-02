@@ -35,13 +35,13 @@ RUN \
  apt-get remove software-properties-common apt-transport-https -y && \
  apt-get autoremove -y && \
  mkdir -p /tmp && \
- if [ -z ${CODE_RELEASE+x} ]; then \
+ if [ -z ${CODE_RELEASE} ]; then \
 	CODE_RELEASE=$(curl -sX GET "https://api.github.com/repos/cdr/code-server/releases/latest" \
 	| awk '/tag_name/{print $4;exit}' FS='[""]'); \
  fi && \
  curl -o \
  /tmp/code.tar.gz -L \
-	"https://github.com/cdr/code-server/releases/download/${CODE_RELEASE}/code-server${CODE_RELEASE}-linux-x86_64.tar.gz" && \
+	"https://github.com/cdr/code-server/releases/download/${CODE_RELEASE}/code-server-${CODE_RELEASE}-linux-x86_64.tar.gz" && \
  tar xzf /tmp/code.tar.gz -C \
 	/usr/local/bin/ --strip-components=1 \
   --wildcards code-server*/code-server && \
